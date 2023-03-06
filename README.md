@@ -5,6 +5,8 @@
 
 Easy to create a custom dialog box using this library.
 
+###Project Requirements
+distributionUrl=https\://services.gradle.org/distributions/gradle-7.5-bin.zip
 
 ## Implementation
 
