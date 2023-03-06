@@ -23,7 +23,7 @@ distributionUrl=https\://services.gradle.org/distributions/gradle-7.5-bin.zip
 
 ```bash
 	dependencies {
-	        implementation 'com.github.pixAndroid:DialogX:1.0'
+	        implementation 'com.github.pixAndroid:DialogX:1.1'
 	}
 ```
 
