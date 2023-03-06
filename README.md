@@ -38,7 +38,28 @@ distributionUrl=https\://services.gradle.org/distributions/gradle-7.5-bin.zip
                 //Close the current window
                 DialogX.dismiss();
 ```
+## YES NO DIALOG
+```bash
+	new DialogX()
+                .setTitle("Are you sure?")
+                .setDescription("Please do not close this window if you are not sure.")
+                .setTitleTextColor(R.color.purple_500)
+                .setDescriptionTextColor(R.color.teal_200)
+                .setProgressColorHex(R.color.purple_500)
+                .setIconDrawable(R.drawable.ic_warning)
+                .setYesNoClickListener(new DialogX.DialogXListener() {
+                    @Override
+                    public void onYesClicked() {
+                        DialogX.dismiss();
+                    }
 
+                    @Override
+                    public void onNoClicked() {
+                        DialogX.dismiss();
+                    }
+                })
+                .showBottomYesNoDialog(MainActivity.this, true);
+```
 ## Badges
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
