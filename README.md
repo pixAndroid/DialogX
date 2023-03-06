@@ -22,9 +22,7 @@ distributionUrl=https\://services.gradle.org/distributions/gradle-7.5-bin.zip
 #### Step 2. Add the dependency
 
 ```bash
-	dependencies {
-	        implementation 'com.github.pixAndroid:DialogX:1.1'
-	}
+	 implementation 'com.github.pixAndroid:DialogX:1.1'
 ```
 
 ## Create a custom dialog
