@@ -1,5 +1,5 @@
 
-# AnimationX 
+# DialogX 
 [![](https://jitpack.io/v/pixAndroid/DialogX.svg)](https://jitpack.io/#pixAndroid/DialogX)
 
 
