@@ -5,6 +5,8 @@
 
 Easy to create a custom dialog box using this library.
 
+### Project Requirements
+distributionUrl=https\://services.gradle.org/distributions/gradle-7.5-bin.zip
 
 ## Implementation
 
@@ -20,9 +22,7 @@ Easy to create a custom dialog box using this library.
 #### Step 2. Add the dependency
 
 ```bash
-	dependencies {
-	        implementation 'com.github.pixAndroid:DialogX:1.0'
-	}
+	 implementation 'com.github.pixAndroid:DialogX:1.1'
 ```
 
 ## Create a custom dialog
@@ -35,7 +35,7 @@ Easy to create a custom dialog box using this library.
                 .setProgressColorHex(R.color.purple_500)
                 .showBottomLoading(MainActivity.this, true);
                 
-                //Close a shown Dialog Window
+                //Close the current window
                 DialogX.dismiss();
 ```
 
