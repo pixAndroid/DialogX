@@ -35,7 +35,7 @@ distributionUrl=https\://services.gradle.org/distributions/gradle-7.5-bin.zip
                 .setProgressColorHex(R.color.purple_500)
                 .showBottomLoading(MainActivity.this, true);
                 
-                //Close a shown Dialog Window
+                //Close the current window
                 DialogX.dismiss();
 ```
 
