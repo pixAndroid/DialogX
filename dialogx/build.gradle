@@ -16,7 +16,7 @@ android {
 
         //TODO STEP 02
         aarMetadata {
-            minCompileSdk = 29
+            minCompileSdk = 21
         }
 
         testFixtures {
