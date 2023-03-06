@@ -23,10 +23,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickM(View view) {
 
-        new DialogX().setTitle("Processing ..")
-//                .setTitleTextColor(R.color.purple_500)
-//                .setDescriptionTextColor(R.color.teal_200)
-//                .setProgressColorHex(R.color.purple_500)
-                .showMiddleLoading(MainActivity.this, true);
+        new DialogX()
+                .setTitle("Processing ..")
+                .setDescription("Please do not close this window")
+                .setTitleTextColor(R.color.purple_500)
+                .setDescriptionTextColor(R.color.teal_200)
+                .setProgressColorHex(R.color.purple_500)
+                .showBottomLoading(MainActivity.this, true);
     }
 }

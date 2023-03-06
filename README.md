@@ -1,9 +1,9 @@
 
 # AnimationX 
-[![](https://jitpack.io/v/pixAndroid/AnimationX.svg)](https://jitpack.io/#pixAndroid/AnimationX)
+[![](https://jitpack.io/v/pixAndroid/DialogX.svg)](https://jitpack.io/#pixAndroid/DialogX)
 
 
-Mainly focused on regular animations, such as - Aplha, Translate, Scale, etc.
+Easy to create a custom dialog box using this library.
 
 
 ## Implementation
@@ -21,18 +21,22 @@ Mainly focused on regular animations, such as - Aplha, Translate, Scale, etc.
 
 ```bash
 	dependencies {
-	        implementation 'com.github.pixAndroid:AnimationX:1.9'
+	        implementation 'com.github.pixAndroid:DialogX:1.0'
 	}
 ```
 
-## Smooth ProgressBar Animation
+## Create a custom dialog
 ```bash
-    //SET MAX PROGRESS 
-	int yourMaxValue = 20000;
-    progress_bar.setMax(yourMaxValue * 100);
-    
-    //DO ANIMATION
-    AnimationX.smoothProgressAnimation(progress_bar, progress, 7000);
+      new DialogX()
+                .setTitle("Processing ..")
+                .setDescription("Please do not close this window")
+                .setTitleTextColor(R.color.purple_500)
+                .setDescriptionTextColor(R.color.teal_200)
+                .setProgressColorHex(R.color.purple_500)
+                .showBottomLoading(MainActivity.this, true);
+                
+                //Close a shown Dialog Window
+                DialogX.dismiss();
 ```
 
 ## Badges
