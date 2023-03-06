@@ -24,11 +24,23 @@ public class MainActivity extends AppCompatActivity {
     public void onClickM(View view) {
 
         new DialogX()
-                .setTitle("Processing ..")
-                .setDescription("Please do not close this window")
+                .setTitle("Are you sure?")
+                .setDescription("Please do not close this window if you are not sure.")
                 .setTitleTextColor(R.color.purple_500)
                 .setDescriptionTextColor(R.color.teal_200)
                 .setProgressColorHex(R.color.purple_500)
-                .showBottomLoading(MainActivity.this, true);
+                .setIconDrawable(R.drawable.ic_warning)
+                .setYesNoClickListener(new DialogX.DialogXListener() {
+                    @Override
+                    public void onYesClicked() {
+                        DialogX.dismiss();
+                    }
+
+                    @Override
+                    public void onNoClicked() {
+                        DialogX.dismiss();
+                    }
+                })
+                .showBottomYesNoDialog(MainActivity.this, true);
     }
 }

@@ -8,9 +8,12 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -27,11 +30,23 @@ public class DialogX {
     private int progress_color;
     private int titleTextColor;
     private int descriptionTextColor;
+    private int iconDrawable;
+    private DialogXListener listener;
 
     private static Dialog mProgressDialog;
 
     public DialogX setTitle(String title) {
         this.title = title;
+        return this;
+    }
+
+    public DialogX setIconDrawable(int iconDrawable) {
+        this.iconDrawable = iconDrawable;
+        return this;
+    }
+
+    public DialogX setYesNoClickListener(DialogXListener listener) {
+        this.listener = listener;
         return this;
     }
 
@@ -68,6 +83,15 @@ public class DialogX {
     public DialogX showMiddleLoading(Context mContext, boolean visible) {
         if (visible){
             showMiddleLoading(mContext);
+        } else {
+            dismiss();
+        }
+        return this;
+    }
+
+    public DialogX showBottomYesNoDialog(Context mContext, boolean visible) {
+        if (visible){
+            showBottomYesNoDialog(mContext);
         } else {
             dismiss();
         }
@@ -176,4 +200,71 @@ public class DialogX {
         mProgressDialog.show();
     }
 
+    private void showBottomYesNoDialog(Context context){
+        mProgressDialog = new Dialog(context);
+        mProgressDialog.setContentView(R.layout.dialog_yes_no);
+
+        mProgressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialogInterface) {
+
+            }
+        });
+        Button btn_no = mProgressDialog.findViewById(R.id.btn_no);
+        Button btn_yes = mProgressDialog.findViewById(R.id.btn_yes);
+        TextView txt_title = mProgressDialog.findViewById(R.id.txt_title);
+        TextView txt_description = mProgressDialog.findViewById(R.id.txt_description);
+        ImageView img_icon = mProgressDialog.findViewById(R.id.img_icon);
+
+        if (titleTextColor != 0) {
+            txt_title.setTextColor(titleTextColor);
+        }
+
+        if (descriptionTextColor != 0) {
+            txt_description.setTextColor(descriptionTextColor);
+        }
+
+        if (title != null) {
+            txt_title.setText(title);
+        }
+
+        if (description != null) {
+            txt_description.setText(description);
+        }
+
+        if (iconDrawable != 0) {
+            img_icon.setImageResource(iconDrawable);
+        }
+
+        btn_yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onYesClicked();
+
+            }
+        });
+
+        btn_no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onNoClicked();
+            }
+        });
+
+        Window window = mProgressDialog.getWindow();
+        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.bg_bottom_dialog));
+        window.setGravity(Gravity.BOTTOM);
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(mProgressDialog.getWindow().getAttributes());
+        lp.windowAnimations = R.style.SlideBottomDialogAnimation;
+        mProgressDialog.getWindow().setAttributes(lp);
+        mProgressDialog.setCancelable(true);
+        mProgressDialog.show();
+    }
+
+    public interface DialogXListener{
+        void onYesClicked();
+        void onNoClicked();
+    }
 }
