@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
                 .setTitleTextColor(R.color.purple_500)
                 .setDescriptionTextColor(R.color.teal_200)
                 .setProgressColorHex(R.color.purple_500)
-                .setIconDrawable(R.drawable.ic_warning)
                 .setYesNoClickListener(new DialogX.DialogXListener() {
                     @Override
                     public void onYesClicked() {
