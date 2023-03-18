@@ -22,7 +22,7 @@ distributionUrl=https\://services.gradle.org/distributions/gradle-7.5-bin.zip
 #### Step 2. Add the dependency
 
 ```bash
-	 implementation 'com.github.pixAndroid:DialogX:1.4'
+	 implementation 'com.github.pixAndroid:DialogX:1.5'
 ```
 
 ## CUSTOM LOADING DIALOG
@@ -40,13 +40,22 @@ distributionUrl=https\://services.gradle.org/distributions/gradle-7.5-bin.zip
 ```
 ## YES NO DIALOG
 ```bash
-	new DialogX()
+	 new DialogX()
                 .setTitle("Are you sure?")
                 .setDescription("Please do not close this window if you are not sure.")
-                .setTitleTextColor(R.color.purple_500)
-                .setDescriptionTextColor(R.color.teal_200)
+                .setTitleTextColor(R.color.black)
+                .setDescriptionTextColor(androidx.cardview.R.color.cardview_dark_background)
                 .setProgressColorHex(R.color.purple_500)
-                .setIconDrawable(R.drawable.ic_warning)
+                .setNoButtonText("Clear")
+                .setYesButtonText("Continue")
+                .setNoButtonColor(R.color.black)
+                .setNoButtonTextColor(R.color.teal_200)
+                .setYesButtonColor(R.color.teal_200)
+                .setYesButtonTextColor(R.color.white)
+                .disableBackToClose(true)
+                .hideButtonNO(true)
+                .setButtonType(DialogX.SQUARE_BUTTON)
+                .setBackgroundColor(R.color.purple_700)
                 .setYesNoClickListener(new DialogX.DialogXListener() {
                     @Override
                     public void onYesClicked() {
