@@ -296,11 +296,11 @@ public class DialogX {
         ImageView img_icon = mProgressDialog.findViewById(R.id.img_icon);
 
         if (titleTextColor != 0) {
-            txt_title.setTextColor(titleTextColor);
+            txt_title.setTextColor(context.getResources().getColor(titleTextColor));
         }
 
         if (descriptionTextColor != 0) {
-            txt_description.setTextColor(descriptionTextColor);
+            txt_description.setTextColor(context.getResources().getColor(descriptionTextColor));
         }
 
         if (yesButtonColor != 0) {

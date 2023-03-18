@@ -68,6 +68,7 @@
             android:fontFamily="@font/lexend"
             android:letterSpacing="0.05"
             android:text="No"
+            android:textSize="16sp"
             android:layout_marginBottom="8dp"
             android:layout_marginTop="8dp"
             android:textAllCaps="false"
@@ -87,6 +88,7 @@
             android:fontFamily="@font/lexend"
             android:letterSpacing="0.05"
             android:text="Yes"
+            android:textSize="16sp"
             android:background="@drawable/btn_square_shape"
             android:textAllCaps="false"
             android:visibility="visible" />
