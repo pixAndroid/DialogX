@@ -1,16 +1,20 @@
-package com.pixandroid.dialogx;
+package com.pixandro.dialogx;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
 
+import com.pixandroid.dialogx.DialogX;
+import com.pixandroid.dialogx.R;
+
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(com.pixandro.dialogx.R.layout.activity_main);
 
 
 
@@ -33,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
                 .setNoButtonColor(R.color.black)
                 .setNoButtonTextColor(R.color.teal_200)
                 .setYesButtonColor(R.color.teal_200)
-                .setYesButtonTextColor(R.color.white)
+                .setYesButtonTextColor(R.color.black)
                 .disableBackToClose(true)
                 .hideButtonNO(true)
                 .setButtonType(DialogX.SQUARE_BUTTON)

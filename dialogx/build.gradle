@@ -5,11 +5,11 @@ plugins {
 
 android {
     namespace 'com.pixandroid.dialogx'
-    compileSdkVersion 32
+    compileSdkVersion 33
 
     defaultConfig {
         minSdk 21
-        targetSdk 32
+        targetSdk 33
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -49,7 +49,7 @@ publishing {
         release(MavenPublication) {
             groupId = 'com.pixandroid.dialogx'
             artifactId = 'dialog_x'
-            version = '1.6'
+            version = '1.7'
 
             afterEvaluate {
                 from components.release
@@ -61,7 +61,7 @@ publishing {
 dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.8.0'
+//    implementation 'com.google.android.material:material:1.8.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
