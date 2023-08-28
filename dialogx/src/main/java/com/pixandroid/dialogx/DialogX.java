@@ -279,6 +279,55 @@ public class DialogX {
         mProgressDialog.show();
     }
 
+    private void show_loading_centre(Context context){
+        mProgressDialog = new Dialog(context);
+        mProgressDialog.setContentView(R.layout.dialog_middle_loading);
+
+        mProgressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialogInterface) {
+
+            }
+        });
+        TextView txt_title = mProgressDialog.findViewById(R.id.txt_title);
+        TextView txt_description = mProgressDialog.findViewById(R.id.txt_description);
+        ProgressBar progress_circular = mProgressDialog.findViewById(R.id.progress_circular);
+
+        if (titleTextColor != 0) {
+            txt_title.setTextColor(titleTextColor);
+        }
+
+        if (descriptionTextColor != 0) {
+            txt_description.setTextColor(descriptionTextColor);
+        }
+
+        if (title != null) {
+            txt_title.setText(title);
+        }
+
+        if (description != null) {
+            txt_description.setText(description);
+        }
+
+        if (progress_color != 0) {
+            String hex = "#" + Integer.toHexString(context.getResources().getColor(progress_color));
+            progress_circular.getIndeterminateDrawable().setColorFilter(Color.parseColor(hex), PorterDuff.Mode.SRC_IN);
+        }
+
+        Window window = mProgressDialog.getWindow();
+        window.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.bg_middle_loading));
+        window.setGravity(Gravity.CENTER);
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(mProgressDialog.getWindow().getAttributes());
+        lp.windowAnimations = R.style.FadeMiddleDialogAnimation;
+        mProgressDialog.getWindow().setAttributes(lp);
+
+        mProgressDialog.setCancelable(true);
+        window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        mProgressDialog.show();
+    }
+
     private void showBottomYesNoDialog(Context context){
         mProgressDialog = new Dialog(context);
         mProgressDialog.setContentView(R.layout.dialog_yes_no);
