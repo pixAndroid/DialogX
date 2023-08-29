@@ -8,7 +8,7 @@
 
     <style name="FadeMiddleDialogAnimation">
         <item name="android:windowEnterAnimation">@anim/amin_fade_in</item>
-        <item name="android:windowExitAnimation">@anim/slide_down_dialog</item>
+        <item name="android:windowExitAnimation">@anim/amin_fade_out</item>
     </style>
 
 </resources>
