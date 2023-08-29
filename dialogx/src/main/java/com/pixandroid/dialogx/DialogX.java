@@ -279,7 +279,7 @@ public class DialogX {
         mProgressDialog.show();
     }
 
-    private void show_loading_centre(Context context){
+    public DialogX show_loading_centre(Context context){
         mProgressDialog = new Dialog(context);
         mProgressDialog.setContentView(R.layout.dialog_middle_loading);
 
@@ -326,6 +326,7 @@ public class DialogX {
         mProgressDialog.setCancelable(true);
         window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         mProgressDialog.show();
+        return this;
     }
 
     private void showBottomYesNoDialog(Context context){
