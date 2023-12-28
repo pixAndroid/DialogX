@@ -5,11 +5,11 @@ plugins {
 
 android {
     namespace 'com.pixandroid.dialogx'
-    compileSdkVersion 33
+    compileSdkVersion 34
 
     defaultConfig {
         minSdk 21
-        targetSdk 33
+        targetSdk 34
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -49,7 +49,7 @@ publishing {
         release(MavenPublication) {
             groupId = 'com.pixandroid.dialogx'
             artifactId = 'dialog_x'
-            version = '1.7'
+            version = '2.1'
 
             afterEvaluate {
                 from components.release
