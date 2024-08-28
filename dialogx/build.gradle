@@ -49,7 +49,7 @@ publishing {
         release(MavenPublication) {
             groupId = 'com.pixandroid.dialogx'
             artifactId = 'dialog_x'
-            version = '2.3'
+            version = '2.4'
 
             afterEvaluate {
                 from components.release

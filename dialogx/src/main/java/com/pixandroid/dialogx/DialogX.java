@@ -52,6 +52,7 @@ public class DialogX {
     private int iconColor;
 
     private boolean hide;
+    private int progressbarColor;
     private int yesButtonColor;
     private int yesButtonTextColor;
     private int noButtonColor;
@@ -116,6 +117,8 @@ public class DialogX {
         return this;
     }
 
+
+
     public DialogX setBackgroundGradient(int startColor, int endColor) {
         this.startColor = startColor;
         this.endColor = endColor;
@@ -160,6 +163,11 @@ public class DialogX {
 
     public DialogX setNoButtonText(String noButtonText) {
         this.noButtonText = noButtonText;
+        return this;
+    }
+
+    public DialogX setProgressbarColor(int color) {
+        this.progress_color = color;
         return this;
     }
 
@@ -345,8 +353,13 @@ public class DialogX {
         lp.copyFrom(mProgressDialog.getWindow().getAttributes());
         lp.windowAnimations = R.style.FadeMiddleDialogAnimation;
         mProgressDialog.getWindow().setAttributes(lp);
+        mProgressDialog.setCancelable(!backToClose);
 
-        mProgressDialog.setCancelable(true);
+        if (backToClose){
+            mProgressDialog.setCanceledOnTouchOutside(!backToClose);
+        }else {
+            mProgressDialog.setCanceledOnTouchOutside(enableOutsideTouch);
+        }
         window.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         mProgressDialog.show();
         return this;
@@ -511,7 +524,12 @@ public class DialogX {
         lp.windowAnimations = R.style.SlideBottomDialogAnimation;
         mProgressDialog.getWindow().setAttributes(lp);
         mProgressDialog.setCancelable(!backToClose);
-        mProgressDialog.setCanceledOnTouchOutside(!enableOutsideTouch);
+
+        if (backToClose){
+            mProgressDialog.setCanceledOnTouchOutside(!backToClose);
+        }else {
+            mProgressDialog.setCanceledOnTouchOutside(enableOutsideTouch);
+        }
         mProgressDialog.show();
     }
 
@@ -685,7 +703,14 @@ public class DialogX {
 
         mProgressDialog.getWindow().setAttributes(lp);
         mProgressDialog.setCancelable(!backToClose);
-        mProgressDialog.setCanceledOnTouchOutside(enableOutsideTouch);
+
+        if (backToClose){
+            mProgressDialog.setCanceledOnTouchOutside(!backToClose);
+        }else {
+            mProgressDialog.setCanceledOnTouchOutside(enableOutsideTouch);
+        }
+
+
         mProgressDialog.show();
 
         return this;
