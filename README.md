@@ -69,7 +69,7 @@ distributionUrl=https\://services.gradle.org/distributions/gradle-7.5-bin.zip
                 })
                 .showBottomYesNoDialog(MainActivity.this, true);
 ```
-## Badges
+## Prevent Dialog Dismissal onBackPressed
 ```bash
 .disableBackToClose(true)
 ```
