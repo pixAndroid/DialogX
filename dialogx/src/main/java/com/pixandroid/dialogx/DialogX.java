@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.InsetDrawable;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -19,11 +20,10 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 
 import com.pixandroid.dialogx.R.drawable;
-import com.pixandroid.dialogx.R.id;
-import com.pixandroid.dialogx.R.layout;
 import com.pixandroid.dialogx.R.style;
 
 
@@ -38,16 +38,18 @@ public class DialogX {
     public static final String ROUND_BUTTON = "round_button";
     public static final String SQUARE_BUTTON = "square_button";
 
+    private boolean enableOutsideTouch = true;
     private boolean backToClose;
     private String title;
     private String description;
     private int progress_color;
     private int titleTextColor;
 
-    private String buttonType = SQUARE_BUTTON;
+    private String buttonType = ROUND_BUTTON;
 
     private int descriptionTextColor;
     private int iconDrawable;
+    private int iconColor;
 
     private boolean hide;
     private int yesButtonColor;
@@ -74,6 +76,11 @@ public class DialogX {
         return this;
     }
 
+    public DialogX enableOutsideTouch(boolean enable) {
+        this.enableOutsideTouch = enable;
+        return this;
+    }
+
     public DialogX setButtonType(String buttonType) {
         this.buttonType = buttonType;
         return this;
@@ -86,6 +93,11 @@ public class DialogX {
 
     public DialogX setIconDrawable(int iconDrawable) {
         this.iconDrawable = iconDrawable;
+        return this;
+    }
+
+    public DialogX setIconColor(int iconColor) {
+        this.iconColor = iconColor;
         return this;
     }
 
@@ -180,6 +192,11 @@ public class DialogX {
         } else {
             dismiss();
         }
+        return this;
+    }
+
+    public DialogX showYesNoBottomDialog(Context mContext) {
+        showBottomYesNoDialog(mContext);
         return this;
     }
 
@@ -396,6 +413,10 @@ public class DialogX {
             img_icon.setImageResource(iconDrawable);
         }
 
+        if (iconColor != 0) {
+            img_icon.setColorFilter(ContextCompat.getColor(context, iconColor), PorterDuff.Mode.SRC_IN);
+        }
+
         if (buttonType != null) {
 
             if (buttonType.equals(ROUND_BUTTON)) {
@@ -490,7 +511,184 @@ public class DialogX {
         lp.windowAnimations = R.style.SlideBottomDialogAnimation;
         mProgressDialog.getWindow().setAttributes(lp);
         mProgressDialog.setCancelable(!backToClose);
+        mProgressDialog.setCanceledOnTouchOutside(!enableOutsideTouch);
         mProgressDialog.show();
+    }
+
+    public DialogX showYesNoDialog(Context context){
+        mProgressDialog = new Dialog(context);
+        mProgressDialog.setContentView(R.layout.dialog_yes_no);
+
+        mProgressDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialogInterface) {
+
+            }
+        });
+        Button btn_no = mProgressDialog.findViewById(R.id.btn_no);
+        Button btn_yes = mProgressDialog.findViewById(R.id.btn_yes);
+        TextView txt_title = mProgressDialog.findViewById(R.id.txt_title);
+        TextView txt_description = mProgressDialog.findViewById(R.id.txt_description);
+        ImageView img_icon = mProgressDialog.findViewById(R.id.img_icon);
+
+        if (titleTextColor != 0) {
+            txt_title.setTextColor(context.getResources().getColor(titleTextColor));
+        }
+
+        if (descriptionTextColor != 0) {
+            txt_description.setTextColor(context.getResources().getColor(descriptionTextColor));
+        }
+
+        if (yesButtonColor != 0) {
+            btn_yes.setBackgroundColor(context.getResources().getColor(yesButtonColor));
+        }
+
+        if (noButtonColor != 0) {
+            btn_no.setBackgroundColor(context.getResources().getColor(noButtonColor));
+        }
+
+        if (yesButtonTextColor != 0) {
+            btn_yes.setTextColor(context.getResources().getColor(yesButtonTextColor));
+        }
+
+        if (noButtonTextColor != 0) {
+            btn_no.setTextColor(context.getResources().getColor(noButtonTextColor));
+        }
+
+        if (yesButtonText != null) {
+            btn_yes.setText(yesButtonText);
+        }
+
+        if (noButtonText != null) {
+            btn_no.setText(noButtonText);
+        }
+
+
+        if (title != null) {
+            txt_title.setText(title);
+        }
+
+        if (description != null) {
+            txt_description.setText(description);
+        }
+
+        if (iconDrawable != 0) {
+            img_icon.setImageResource(iconDrawable);
+        }
+
+        if (iconColor != 0) {
+            img_icon.setColorFilter(ContextCompat.getColor(context, iconColor), PorterDuff.Mode.SRC_IN);
+        }
+
+        if (buttonType != null) {
+
+            if (buttonType.equals(ROUND_BUTTON)) {
+                btn_yes.setBackground(context.getResources().getDrawable(R.drawable.btn_round_shape));
+                btn_no.setBackground(context.getResources().getDrawable(R.drawable.btn_round_shape));
+
+                if (yesButtonColor != 0) {
+                    Drawable unwrappedDrawable = AppCompatResources.getDrawable(context, R.drawable.btn_round_shape);
+                    Drawable wrappedDrawable = null;
+                    if (unwrappedDrawable != null) {
+                        wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable);
+                        DrawableCompat.setTint(wrappedDrawable, context.getResources().getColor(yesButtonColor));
+                        btn_yes.setBackground(wrappedDrawable);
+                    }
+                }
+
+                if (noButtonColor != 0) {
+                    Drawable unwrappedDrawable = AppCompatResources.getDrawable(context, R.drawable.btn_round_shape);
+                    Drawable wrappedDrawable = null;
+                    if (unwrappedDrawable != null) {
+                        wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable);
+                        DrawableCompat.setTint(wrappedDrawable, context.getResources().getColor(noButtonColor));
+                        btn_no.setBackground(wrappedDrawable);
+                    }
+                }
+
+            } else {
+                btn_yes.setBackground(context.getResources().getDrawable(R.drawable.btn_round_shape));
+                btn_no.setBackground(context.getResources().getDrawable(R.drawable.btn_round_shape));
+
+                if (yesButtonColor != 0) {
+                    Drawable unwrappedDrawable = AppCompatResources.getDrawable(context, R.drawable.btn_square_shape);
+                    Drawable wrappedDrawable = null;
+                    if (unwrappedDrawable != null) {
+                        wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable);
+                        DrawableCompat.setTint(wrappedDrawable, context.getResources().getColor(yesButtonColor));
+                        btn_yes.setBackground(wrappedDrawable);
+                    }
+                }
+
+                if (noButtonColor != 0) {
+                    Drawable unwrappedDrawable = AppCompatResources.getDrawable(context, R.drawable.btn_square_shape);
+                    Drawable wrappedDrawable = null;
+                    if (unwrappedDrawable != null) {
+                        wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable);
+                        DrawableCompat.setTint(wrappedDrawable, context.getResources().getColor(noButtonColor));
+                        btn_no.setBackground(wrappedDrawable);
+                    }
+                }
+            }
+
+        }
+
+
+        btn_yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onYesClicked();
+
+            }
+        });
+
+        btn_no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onNoClicked();
+            }
+        });
+
+        //APPLY TINT OVER BACKGROUND
+        Drawable unwrappedDrawable = AppCompatResources.getDrawable(context, drawable.bg_mid_yes_no_dialog);
+        Drawable wrappedDrawable = null;
+        InsetDrawable inset = null;
+        if (unwrappedDrawable != null) {
+            wrappedDrawable = DrawableCompat.wrap(unwrappedDrawable);
+
+            if (backgroundColor != 0) {
+                DrawableCompat.setTint(wrappedDrawable, context.getResources().getColor(backgroundColor));
+            }
+
+//            ColorDrawable back = new ColorDrawable(Color.TRANSPARENT);
+            inset = new InsetDrawable(wrappedDrawable, 20);
+        }
+
+        if (hide) {
+            btn_no.setVisibility(View.GONE);
+        }
+
+
+        Window window = mProgressDialog.getWindow();
+        window.setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(inset);
+        window.setGravity(Gravity.CENTER);
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(mProgressDialog.getWindow().getAttributes());
+        lp.windowAnimations = style.FadeMiddleDialogAnimation;
+
+//        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+//        int margin = (int) TypedValue.applyDimension(
+//                TypedValue.COMPLEX_UNIT_DIP, 24, context.getResources().getDisplayMetrics());
+//        lp.horizontalMargin = 16;
+//        lp.x = margin;
+
+        mProgressDialog.getWindow().setAttributes(lp);
+        mProgressDialog.setCancelable(!backToClose);
+        mProgressDialog.setCanceledOnTouchOutside(enableOutsideTouch);
+        mProgressDialog.show();
+
+        return this;
     }
 
     public interface DialogXListener{

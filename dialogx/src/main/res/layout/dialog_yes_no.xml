@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Do you want to close this window"
+        android:text="Press Yes to continue. Press No to close"
         android:letterSpacing="0.05"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
