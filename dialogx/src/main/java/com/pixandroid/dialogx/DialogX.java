@@ -21,6 +21,12 @@ import android.widget.TextView;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.core.graphics.drawable.DrawableCompat;
 
+import com.pixandroid.dialogx.R.drawable;
+import com.pixandroid.dialogx.R.id;
+import com.pixandroid.dialogx.R.layout;
+import com.pixandroid.dialogx.R.style;
+
+
 
 /********************************************
  *     Created by DailyCoding on 27-May-22.  *
