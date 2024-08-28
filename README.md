@@ -22,7 +22,7 @@ distributionUrl=https\://services.gradle.org/distributions/gradle-7.5-bin.zip
 #### Step 2. Add the dependency
 
 ```bash
-	 implementation 'com.github.pixAndroid:DialogX:2.2'
+	 implementation 'com.github.pixAndroid:DialogX:2.4'
 ```
 
 ## CUSTOM LOADING DIALOG
@@ -68,6 +68,10 @@ distributionUrl=https\://services.gradle.org/distributions/gradle-7.5-bin.zip
                     }
                 })
                 .showBottomYesNoDialog(MainActivity.this, true);
+```
+## Badges
+```bash
+.disableBackToClose(true)
 ```
 ## Badges
 
