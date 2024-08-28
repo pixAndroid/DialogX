@@ -67,7 +67,7 @@ distributionUrl=https\://services.gradle.org/distributions/gradle-7.5-bin.zip
                         DialogX.dismiss();
                     }
                 })
-                .showBottomYesNoDialog(MainActivity.this, true);
+                .showYesNoDialog(MainActivity.this);
 ```
 ## Prevent Dialog Dismissal onBackPressed
 ```bash
